@@ -23,18 +23,14 @@ const IssueList = () => {
         return (
             <ul>
                 {issueListArr.map((issueData, idx) => {
-                    return (
-                        <>
-                            {(idx + 1) % 5 ? (
-                                <IssueListItem
-                                    key={issueData.id}
-                                    issueData={issueData}
-                                />
-                            ) : (
-                                <AdImg key={issueData.id} />
-                            )}
-                        </>
-                    );
+                    if ((idx + 1) % 5)
+                        return (
+                            <IssueListItem
+                                key={issueData.id}
+                                issueData={issueData}
+                            />
+                        );
+                    else return <AdImg key={issueData.number} />;
                 })}
             </ul>
         );
