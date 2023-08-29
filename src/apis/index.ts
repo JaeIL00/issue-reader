@@ -10,6 +10,8 @@ const getIssueListFetch = async () => {
         .request("get /repos/{owner}/{repo}/issues", {
             owner: "facebook",
             repo: "react",
+            state: "open",
+            sort: "comments",
         })
         .then((res) => {
             return res.data;
