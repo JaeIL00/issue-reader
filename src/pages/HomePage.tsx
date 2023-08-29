@@ -1,12 +1,7 @@
-import { useEffect } from "react";
-import getIssueListFetch from "../apis";
+import { IssueList } from "../components";
 
 const HomePage = () => {
-    useEffect(() => {
-        getIssueListFetch();
-    }, []);
-
-    return <></>;
+    return <IssueList />;
 };
 
 export default HomePage;
