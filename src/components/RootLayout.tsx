@@ -16,7 +16,7 @@ const RootLayout = () => {
 
 const GlobalContainer = styled.div`
     padding-top: 8vh;
-    max-width: 40vw;
+    max-width: 70vw;
     margin: 0 auto;
 `;
 const GlobalHeader = styled.header`
