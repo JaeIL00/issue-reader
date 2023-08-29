@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { IssueListItemPropsTypes } from "../types";
-import { useEffect } from "react";
 
 const DATE_UNIT = ["년", "월", "일"];
 
