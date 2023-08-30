@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
-import { HomePage, IssueDetailPage } from "../pages";
+import { HomePage, IssueDetailPage, NotFoundPage } from "../pages";
 
 const router = createBrowserRouter([
     {
@@ -13,8 +13,12 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
-                path: ":issueId",
+                path: "issue/:issueId",
                 element: <IssueDetailPage />,
+            },
+            {
+                path: "*",
+                element: <NotFoundPage />,
             },
         ],
     },

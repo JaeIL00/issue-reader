@@ -8,8 +8,8 @@ const DATE_UNIT = ["년", "월", "일"];
 const IssueListItem = ({ issueData }: IssuePropsTypes) => {
     const navigate = useNavigate();
 
-    const navigateDetailPage = (id: string) => {
-        navigate(id);
+    const navigateDetailPage = (id: number) => {
+        navigate(`issue/${id}`);
     };
 
     const createTime: string = issueData.created_at
@@ -20,7 +20,7 @@ const IssueListItem = ({ issueData }: IssuePropsTypes) => {
 
     return (
         <li>
-            <ItemBtn onClick={() => navigateDetailPage(issueData.id + "")}>
+            <ItemBtn onClick={() => navigateDetailPage(issueData.id)}>
                 <ProfileImg
                     src={issueData.user.avatar_url}
                     alt="이슈 등록자 프로필 사진"
