@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { useSetRecoilState } from "recoil";
 
 import getIssueListFetch from "../apis";
 import { GithubResponseTypes } from "../types";
 import IssueListItem from "./IssueListItem";
 import AdImg from "./common/AdImg";
 import LoadingSpinner from "./common/LoadingSpinner";
+import { issueResponseAtom } from "../recoil/atoms";
 
 const IssueList = () => {
+    const setIssueResponseAtom = useSetRecoilState(issueResponseAtom);
+
     const pageNumber = useRef<number>(1);
     const observer = useRef<IntersectionObserver>();
 
@@ -20,6 +24,7 @@ const IssueList = () => {
             setIsLoading(true);
             const response = await getIssueListFetch(pageNumber.current);
             if (response[0]) {
+                setIssueResponseAtom((prev) => [...prev, ...response]);
                 setIssueListArr((prev) => [...prev, ...response]);
                 pageNumber.current += 1;
             }
