@@ -4,17 +4,20 @@ import styled from "styled-components";
 import getIssueListFetch from "../apis";
 import { GithubResponseTypes } from "../types";
 import IssueListItem from "./IssueListItem";
-import AdImg from "./AdImg";
+import AdImg from "./common/AdImg";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 const IssueList = () => {
     const pageNumber = useRef<number>(1);
     const observer = useRef<IntersectionObserver>();
 
     const [target, setTarget] = useState<any>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [issueListArr, setIssueListArr] = useState<GithubResponseTypes[]>([]);
 
     const fetchIssueList = async () => {
         try {
+            setIsLoading(true);
             const response = await getIssueListFetch(pageNumber.current);
             if (response[0]) {
                 setIssueListArr((prev) => [...prev, ...response]);
@@ -22,6 +25,8 @@ const IssueList = () => {
             }
         } catch (error) {
             alert(error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -44,20 +49,23 @@ const IssueList = () => {
     }, [target]);
 
     return (
-        <ul>
-            {issueListArr.map((issueData, idx) => {
-                const isAdBanner = (idx + 1) % 5;
-                if (isAdBanner)
-                    return (
-                        <IssueListItem
-                            key={issueData.id}
-                            issueData={issueData}
-                        />
-                    );
-                else return <AdImg key={issueData.number} />;
-            })}
-            <ObserveTarget ref={setTarget} />
-        </ul>
+        <>
+            {isLoading && <LoadingSpinner />}
+            <ul>
+                {issueListArr.map((issueData, idx) => {
+                    const isAdBanner = (idx + 1) % 5;
+                    if (isAdBanner)
+                        return (
+                            <IssueListItem
+                                key={issueData.id}
+                                issueData={issueData}
+                            />
+                        );
+                    else return <AdImg key={issueData.number} />;
+                })}
+                <ObserveTarget ref={setTarget} />
+            </ul>
+        </>
     );
 };
 

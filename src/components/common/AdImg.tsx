@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import wantedAdImgSrc from "../assets/wanted-ad.jpeg";
+import wantedAdImgSrc from "../../assets/wanted-ad.jpeg";
 
 const AdImg = () => {
     return (
