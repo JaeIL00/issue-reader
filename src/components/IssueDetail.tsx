@@ -46,6 +46,7 @@ const Header = styled.header`
     width: 70vw;
     height: 4vh;
     position: fixed;
+    top: 11.5vh;
     display: flex;
     align-items: center;
     padding-bottom: 0.3rem;
@@ -59,6 +60,7 @@ const HeaderTitleBox = styled.div`
     height: 100%;
     margin-left: 1rem;
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: flex-end;
 `;
@@ -73,7 +75,8 @@ const CommentNumber = styled.span`
     margin: auto;
 `;
 const ContentsBox = styled.article`
-    padding-top: 6vh;
+    padding-top: 3vh;
+    padding-bottom: 5vh;
     overflow: hidden;
     word-wrap: break-word;
 `;
