@@ -12,7 +12,7 @@ const IssueDetail = ({ issueData }: IssuePropsTypes) => {
             <Header>
                 <ProfileImg
                     src={issueData.user.avatar_url}
-                    alt="프로필 이미지"
+                    alt="이슈 등록자 프로필 사진"
                 />
                 <HeaderTitleBox>
                     <GrayText size="0.6rem" color="#999">

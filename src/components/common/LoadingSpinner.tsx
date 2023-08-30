@@ -6,7 +6,12 @@ const LoadingSpinner = () => {
     return (
         <Container>
             <SpinnerBox>
-                <img src={loadingSpinnerSVG} width="100%" height="100%" />
+                <img
+                    src={loadingSpinnerSVG}
+                    alt="로딩 이미지"
+                    width="100%"
+                    height="100%"
+                />
             </SpinnerBox>
             <Background />
         </Container>
