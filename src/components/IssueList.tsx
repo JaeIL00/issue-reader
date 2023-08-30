@@ -56,15 +56,16 @@ const IssueList = () => {
 
     useEffect(() => {
         observeTarget();
-    }, [target, observeTarget]);
+    }, [target]);
 
     return (
         <>
+            <span>{pageNumber}</span>
             {isLoading && <LoadingSpinner />}
             <ul>
                 {issueList.map((issueData, idx) => {
-                    const isAdBanner = (idx + 1) % 5;
-                    if (isAdBanner)
+                    const isListItem = (idx + 1) % 5;
+                    if (isListItem)
                         return (
                             <IssueListItem
                                 key={issueData.id}
