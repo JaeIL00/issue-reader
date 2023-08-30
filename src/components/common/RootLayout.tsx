@@ -5,7 +5,7 @@ const RootLayout = () => {
     return (
         <GlobalContainer>
             <GlobalHeader>
-                <h1>React Issues</h1>
+                <h1>facebook/react</h1>
             </GlobalHeader>
             <Main>
                 <Outlet />
