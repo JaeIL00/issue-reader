@@ -46,11 +46,15 @@ const IssueList = () => {
         }
     };
 
-    useEffect(() => {
+    const observeTarget = () => {
         if (target) {
             observer.current = new IntersectionObserver(intersectionCallback);
             observer.current.observe(target);
         }
+    };
+
+    useEffect(() => {
+        observeTarget();
     }, [target]);
 
     return (

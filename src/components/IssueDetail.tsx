@@ -12,7 +12,6 @@ const IssueDetail = ({ issueData }: IssuePropsTypes) => {
         .map((date, idx) => date + DATE_UNIT[idx])
         .join("");
 
-    //‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문' 표시
     return (
         <Container>
             <Header>
