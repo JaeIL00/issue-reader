@@ -1,4 +1,6 @@
-const IssueDetail = () => {
+import { IssuePropsTypes } from "../types";
+
+const IssueDetail = ({ issueData }: IssuePropsTypes) => {
     return <></>;
 };
 

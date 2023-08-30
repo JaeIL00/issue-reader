@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import { IssueListItemPropsTypes } from "../types";
+import { IssuePropsTypes } from "../types";
 
 const DATE_UNIT = ["년", "월", "일"];
 
-const IssueListItem = ({ issueData }: IssueListItemPropsTypes) => {
+const IssueListItem = ({ issueData }: IssuePropsTypes) => {
     const navigate = useNavigate();
 
     const navigateDetailPage = (id: string) => {

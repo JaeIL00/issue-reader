@@ -77,6 +77,6 @@ export interface GithubResponseTypes {
     state_reason: null;
 }
 
-export interface IssueListItemPropsTypes {
+export interface IssuePropsTypes {
     issueData: GithubResponseTypes;
 }
