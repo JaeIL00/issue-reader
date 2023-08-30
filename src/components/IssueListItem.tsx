@@ -41,12 +41,13 @@ const ItemBtn = styled.button`
     background-color: transparent;
     width: 100%;
     height: 4rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.5rem;
     margin-bottom: 1.2rem;
     display: flex;
     border: solid 0.1rem #666;
     border-radius: 0.7rem;
     text-align: left;
+    cursor: pointer;
 `;
 const ProfileImg = styled.img`
     height: 100%;
@@ -55,7 +56,7 @@ const ProfileImg = styled.img`
     box-shadow: 0 0 2px 1px rgb(85, 85, 85, 0.3);
 `;
 const TextBox = styled.div`
-    width: 80%;
+    width: 70%;
     height: 100%;
     padding-left: 0.6rem;
     display: flex;
@@ -67,7 +68,7 @@ const TitleBox = styled.div`
     align-items: center;
 `;
 const TitleLimitBox = styled.div`
-    max-width: 80%;
+    max-width: 60%;
     margin-right: 0.3rem;
 `;
 const IssueTitle = styled.h3`
@@ -75,15 +76,15 @@ const IssueTitle = styled.h3`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     font-weight: 600;
 `;
 const IssueNumber = styled.span`
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: #888;
 `;
 const IssueCreateDate = styled.span`
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     color: #888;
     margin-left: 0.5rem;
 `;
