@@ -27,6 +27,7 @@ const GlobalHeader = styled.header`
     position: fixed;
     text-align: center;
     background-color: #fff;
+    z-index: 2;
 `;
 const Main = styled.main`
     padding-top: 15.6vh;
