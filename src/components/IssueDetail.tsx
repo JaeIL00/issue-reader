@@ -29,7 +29,7 @@ const IssueDetail = ({ issueData }: IssuePropsTypes) => {
                 <Title>
                     {issueData.title}
                     <GrayText size="1rem" color="#777">
-                        {" " + "#" + issueData.number}
+                        {` #${issueData.number}`}
                     </GrayText>
                 </Title>
                 <br />

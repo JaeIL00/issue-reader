@@ -56,7 +56,7 @@ const IssueList = () => {
 
     useEffect(() => {
         observeTarget();
-    }, [target]);
+    }, [target, observeTarget]);
 
     return (
         <>
