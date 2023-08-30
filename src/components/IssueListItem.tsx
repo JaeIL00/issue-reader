@@ -1,9 +1,17 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import { IssueListItemPropsTypes } from "../types";
 
 const DATE_UNIT = ["년", "월", "일"];
 
 const IssueListItem = ({ issueData }: IssueListItemPropsTypes) => {
+    const navigate = useNavigate();
+
+    const navigateDetailPage = (id: string) => {
+        navigate(id);
+    };
+
     const createTime: string = issueData.created_at
         .slice(0, 9)
         .split("-")
@@ -12,7 +20,7 @@ const IssueListItem = ({ issueData }: IssueListItemPropsTypes) => {
 
     return (
         <li>
-            <ItemBtn>
+            <ItemBtn onClick={() => navigateDetailPage(issueData.id + "")}>
                 <ProfileImg
                     src={issueData.user.avatar_url}
                     alt="이슈 등록자 프로필 사진"
