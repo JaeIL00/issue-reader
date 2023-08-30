@@ -2,15 +2,10 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
 import { IssuePropsTypes } from "../types";
-
-const DATE_UNIT = ["년", "월", "일"];
+import dateFormatting from "../utils/dateFormatting";
 
 const IssueDetail = ({ issueData }: IssuePropsTypes) => {
-    const createTime: string = issueData.created_at
-        .slice(0, 9)
-        .split("-")
-        .map((date, idx) => date + DATE_UNIT[idx])
-        .join("");
+    const createTime = dateFormatting(issueData.created_at);
 
     return (
         <Container>

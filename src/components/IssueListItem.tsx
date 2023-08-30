@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import { IssuePropsTypes } from "../types";
-
-const DATE_UNIT = ["년", "월", "일"];
+import dateFormatting from "../utils/dateFormatting";
 
 const IssueListItem = ({ issueData }: IssuePropsTypes) => {
     const navigate = useNavigate();
@@ -12,11 +11,7 @@ const IssueListItem = ({ issueData }: IssuePropsTypes) => {
         navigate(`issue/${id}`);
     };
 
-    const createTime: string = issueData.created_at
-        .slice(0, 9)
-        .split("-")
-        .map((date, idx) => date + DATE_UNIT[idx])
-        .join("");
+    const createTime = dateFormatting(issueData.created_at);
 
     return (
         <li>
