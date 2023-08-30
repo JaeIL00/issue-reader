@@ -1,32 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import getIssueListFetch from "../apis";
-import { GithubResponseTypes } from "../types";
 import IssueListItem from "./IssueListItem";
 import AdImg from "./common/AdImg";
 import LoadingSpinner from "./common/LoadingSpinner";
 import { issueResponseAtom } from "../recoil/atoms";
 
 const IssueList = () => {
+    const { pageNumber, issueList } = useRecoilValue(issueResponseAtom);
     const setIssueResponseAtom = useSetRecoilState(issueResponseAtom);
 
-    const pageNumber = useRef<number>(1);
     const observer = useRef<IntersectionObserver>();
 
     const [target, setTarget] = useState<any>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [issueListArr, setIssueListArr] = useState<GithubResponseTypes[]>([]);
 
     const fetchIssueList = async () => {
         try {
             setIsLoading(true);
-            const response = await getIssueListFetch(pageNumber.current);
+            const response = await getIssueListFetch(pageNumber);
             if (response[0]) {
-                setIssueResponseAtom((prev) => [...prev, ...response]);
-                setIssueListArr((prev) => [...prev, ...response]);
-                pageNumber.current += 1;
+                setIssueResponseAtom((prev) => {
+                    return {
+                        issueList: [...prev.issueList, ...response],
+                        pageNumber: prev.pageNumber + 1,
+                    };
+                });
             }
         } catch (error) {
             alert(error);
@@ -61,7 +62,7 @@ const IssueList = () => {
         <>
             {isLoading && <LoadingSpinner />}
             <ul>
-                {issueListArr.map((issueData, idx) => {
+                {issueList.map((issueData, idx) => {
                     const isAdBanner = (idx + 1) % 5;
                     if (isAdBanner)
                         return (

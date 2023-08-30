@@ -80,3 +80,7 @@ export interface GithubResponseTypes {
 export interface IssuePropsTypes {
     issueData: GithubResponseTypes;
 }
+export interface issueResponseAtomTypes {
+    pageNumber: number;
+    issueList: GithubResponseTypes[];
+}

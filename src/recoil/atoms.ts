@@ -1,7 +1,10 @@
 import { atom } from "recoil";
-import { GithubResponseTypes } from "../types";
+import { issueResponseAtomTypes } from "../types";
 
-export const issueResponseAtom = atom<GithubResponseTypes[]>({
+export const issueResponseAtom = atom<issueResponseAtomTypes>({
     key: "issueResponseAtom",
-    default: [],
+    default: {
+        pageNumber: 1,
+        issueList: [],
+    },
 });

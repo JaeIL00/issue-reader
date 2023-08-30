@@ -5,11 +5,11 @@ import { ErrorUserGuide, IssueDetail } from "../components";
 import { issueResponseAtom } from "../recoil/atoms";
 
 const IssueDetailPage = () => {
-    const issueResponse = useRecoilValue(issueResponseAtom);
+    const { issueList } = useRecoilValue(issueResponseAtom);
 
     const param = useParams();
 
-    const detailData = issueResponse.filter(
+    const detailData = issueList.filter(
         (issue) => issue.id + "" === param.issueId
     );
 
