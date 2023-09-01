@@ -13,7 +13,6 @@ const LoadingSpinner = () => {
                     height="100%"
                 />
             </SpinnerBox>
-            <Background />
         </Container>
     );
 };
@@ -28,13 +27,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     touch-action: none;
-`;
-const Background = styled.div`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #e8e8e8;
-    opacity: 0.4;
+    z-index: 3;
 `;
 const SpinnerBox = styled.div`
     width: 3.4rem;
