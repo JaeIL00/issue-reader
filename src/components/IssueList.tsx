@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 import getIssueListFetch from "../apis";
 import IssueListItem from "./IssueListItem";
@@ -9,10 +9,8 @@ import LoadingSpinner from "./common/LoadingSpinner";
 import { issueResponseAtom } from "../recoil/atoms";
 
 const IssueList = () => {
-    const { pageNumber, issueList } = useRecoilValue(issueResponseAtom);
-    const setIssueResponseAtom = useSetRecoilState(issueResponseAtom);
-
-    const observer = useRef<IntersectionObserver>();
+    const [{ pageNumber, issueList }, setIssueResponseAtom] =
+        useRecoilState(issueResponseAtom);
 
     const [target, setTarget] = useState<any>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -22,12 +20,10 @@ const IssueList = () => {
             setIsLoading(true);
             const response = await getIssueListFetch(pageNumber);
             if (response[0]) {
-                setIssueResponseAtom((prev) => {
-                    return {
-                        issueList: [...prev.issueList, ...response],
-                        pageNumber: prev.pageNumber + 1,
-                    };
-                });
+                setIssueResponseAtom((prev) => ({
+                    pageNumber: prev.pageNumber + 1,
+                    issueList: [...prev.issueList, ...response],
+                }));
             }
         } catch (error) {
             alert(error);
@@ -36,27 +32,20 @@ const IssueList = () => {
         }
     };
 
-    const intersectionCallback = async (
-        entry: IntersectionObserverEntry[],
-        observer: IntersectionObserver
-    ) => {
+    const io = new IntersectionObserver(async (entry) => {
         if (entry[0].isIntersecting) {
-            observer.unobserve(entry[0].target);
             await fetchIssueList();
-            observer.observe(entry[0].target);
         }
-    };
-
-    const observeTarget = () => {
-        if (target) {
-            observer.current = new IntersectionObserver(intersectionCallback);
-            observer.current.observe(target);
-        }
-    };
+    });
 
     useEffect(() => {
-        observeTarget();
-    }, [target]);
+        if (!target) return;
+        io.observe(target);
+
+        return () => {
+            io.unobserve(target);
+        };
+    }, [target, pageNumber]);
 
     return (
         <>
