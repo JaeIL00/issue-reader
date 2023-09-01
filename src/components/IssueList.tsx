@@ -49,7 +49,6 @@ const IssueList = () => {
 
     return (
         <>
-            <span>{pageNumber}</span>
             {isLoading && <LoadingSpinner />}
             <ul>
                 {issueList.map((issueData, idx) => {

@@ -1,21 +1,15 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { IssuePropsTypes } from "../types";
 import dateFormatting from "../utils/dateFormatting";
 
 const IssueListItem = ({ issueData }: IssuePropsTypes) => {
-    const navigate = useNavigate();
-
-    const navigateDetailPage = (id: number) => {
-        navigate(`issue/${id}`);
-    };
-
     const createTime = dateFormatting(issueData.created_at);
 
     return (
         <li>
-            <ItemBtn onClick={() => navigateDetailPage(issueData.id)}>
+            <ItemLink to={`issue/${issueData.id}`}>
                 <ProfileImg
                     src={issueData.user.avatar_url}
                     alt="이슈 등록자 프로필 사진"
@@ -35,12 +29,12 @@ const IssueListItem = ({ issueData }: IssuePropsTypes) => {
                 <CommentsBox>
                     <span>{issueData.comments}</span>
                 </CommentsBox>
-            </ItemBtn>
+            </ItemLink>
         </li>
     );
 };
 
-const ItemBtn = styled.button`
+const ItemLink = styled(Link)`
     background-color: transparent;
     width: 100%;
     height: 4rem;
@@ -50,7 +44,8 @@ const ItemBtn = styled.button`
     border: solid 0.1rem #666;
     border-radius: 0.7rem;
     text-align: left;
-    cursor: pointer;
+    color: #333;
+    text-decoration: none;
 `;
 const ProfileImg = styled.img`
     height: 100%;

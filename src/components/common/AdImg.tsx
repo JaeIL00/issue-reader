@@ -21,7 +21,8 @@ const AdImg = () => {
 const Container = styled.figure`
     position: relative;
     width: 100%;
-    height: 12rem;
+    height: 15rem;
+    overflow: hidden;
 `;
 const WantedImg = styled.img`
     width: 100%;
